@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:MyDataGrid xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="components.*">
+	<components:columns>
+		<mx:DataGridColumn dataField="section" headerText="Section"/>
+		<mx:DataGridColumn dataField="name" headerText="Event"/>
+		<mx:DataGridColumn dataField="criteria" headerText="Criteria"/>
+		<mx:DataGridColumn dataField="status" headerText="Status"/>
+		<mx:DataGridColumn headerText="Meter">
+			<mx:itemRenderer>
+				<mx:Component>
+					<mx:HBox horizontalScrollPolicy="off" verticalScrollPolicy="off" width="100%" height="100%">
+						<mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" 
+								 backgroundColor="{data.metercolor}" width="{width*(Number(data.meter)/100)}" height="100%" >
+							<mx:Label text="{String(data.meter)}%" color="black"/>
+						</mx:HBox>	
+					</mx:HBox>
+				</mx:Component>
+			</mx:itemRenderer>
+		</mx:DataGridColumn>
+		<mx:DataGridColumn dataField="notes" headerText="Notes"/>
+		<mx:DataGridColumn headerText="Action">
+			<mx:itemRenderer>
+        		<mx:Component>
+            		<mx:Button label="{data.action}" 
+							   click="{parentDocument.actionPrompt({action: data.action, eventId: data.id, outageId: data.outageId, user: parentDocument.username.text},'set')}"/>
+       			</mx:Component>
+   			</mx:itemRenderer>
+   		</mx:DataGridColumn>
+	</components:columns>     	    	    	    	
+</components:MyDataGrid> 

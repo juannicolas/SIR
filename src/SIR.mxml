@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				xmlns:components="components.*" layout="absolute" 
+				currentState="Login" creationComplete="init();" borderColor="#9E9EA2">
+    
+	<mx:Script>
+	        <![CDATA[
+	        	import mx.controls.List;
+	        	import mx.controls.Alert;
+	        	import mx.events.ListEvent;
+	            import mx.events.ItemClickEvent;
+	            import mx.events.CloseEvent;
+	            import mx.managers.PopUpManager;
+	            import mx.managers.CursorManager;
+	            import mx.containers.TitleWindow;
+	            import flash.utils.Timer;
+				import flash.events.TimerEvent;
+				import mx.rpc.http.HTTPService;
+            	import mx.rpc.events.ResultEvent;
+            	import mx.rpc.events.FaultEvent;
+            	import mx.collections.Sort;
+            	import mx.collections.SortField;
+            	import flash.external.ExternalInterface;
+				
+				[Bindable] private var date:String;
+				private var cdmaLoader:URLLoader = new URLLoader();
+				private var envLoader:URLLoader = new URLLoader();
+				private var e911Loader:URLLoader = new URLLoader();
+				private var billLoader:URLLoader = new URLLoader();
+				private var transLoader:URLLoader = new URLLoader();
+				private var dataLoader:URLLoader = new URLLoader();
+				private var allLoader:URLLoader = new URLLoader();
+	      		private var myTimer:Timer = new Timer(1000, 0);
+	      		private var refreshTimer:Timer = new Timer(120000, 0);
+	      		private var service:HTTPService 
+	      		
+	      		private function init():void
+	      		{
+	      			var e:TimerEvent = new TimerEvent(TimerEvent.TIMER);
+	            	reloadData(e);
+	      			myTimer.start();
+	      			myTimer.addEventListener(TimerEvent.TIMER, getCurrDate);
+	      			refreshTimer.start();
+	      			refreshTimer.addEventListener(TimerEvent.TIMER, reloadData);
+	      			ExternalInterface.call('function browserFocus(){document.getElementById(\'SIR\').focus();}'); 
+	      			username.setFocus();
+
+	      		} 
+	      		
+	      		private function sortInit(eventsXMLList:XMLListCollection):void
+	      		{
+	      			eventsXMLList.sort = new Sort();
+                	eventsXMLList.sort.fields = [new SortField("status", false, false)];
+                	eventsXMLList.refresh();
+	      		}
+	      		
+	      		private function reloadData(e:TimerEvent):void
+	      		{
+	      			
+	      			cdmaLoader.addEventListener(Event.COMPLETE, function (e2:Event):void {reloadGrid(e2, cdmaLoader, cdmaXMLList)});
+	      			envLoader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, envLoader, envXMLList)});
+	      			e911Loader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, e911Loader, e911XMLList)});
+	      			billLoader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, billLoader, billXMLList)});
+	      			transLoader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, transLoader, transXMLList)});
+	      			dataLoader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, dataLoader, dataXMLList)});
+	      			allLoader.addEventListener(Event.COMPLETE,function (e2:Event):void {reloadGrid(e2, allLoader, allXMLList)});
+	      			
+	      			cdmaLoader.load(new URLRequest("files/cdmaRanEvents.xml?nocache=" + getTimer()));	
+	      			envLoader.load(new URLRequest("files/envEvents.xml?nocache=" + getTimer()));	
+	      			e911Loader.load(new URLRequest("files/e911Events.xml?nocache=" + getTimer()));
+	      			billLoader.load(new URLRequest("files/billEvents.xml?nocache=" + getTimer()));	
+	      			transLoader.load(new URLRequest("files/transEvents.xml?nocache=" + getTimer()));	
+	      			dataLoader.load(new URLRequest("files/dataEvents.xml?nocache=" + getTimer()));	
+	      			allLoader.load(new URLRequest("files/allEvents.xml?nocache=" + getTimer()));	     			
+	      		}
+	      		
+	      		private function reloadGrid(e:Event,loader:URLLoader, eventsXMLList:XMLListCollection):void
+	      		{
+	      			var xmlData:XML = new XML(loader.data);
+	      			eventsXMLList.source = xmlData.event;
+	      		}
+	      		
+	      		private function getCurrDate(e:TimerEvent):void 
+	      		{
+	      			date = new Date().toString();
+	        		date = df.format(date);
+	     		}
+	                
+	            private function showWindow(event:ListEvent):void 
+	            {
+	            	childsXMLList.source = childsXML.event;
+	            	useHttpService({outageId: event.currentTarget.selectedItem.outageId, sirId: event.currentTarget.selectedItem.id, nocache: getTimer()}, "getChilds");
+	                var info:EventPopUp=EventPopUp(PopUpManager.createPopUp( this, EventPopUp , true)); 
+	                var status:String = event.currentTarget.selectedItem.status;     
+	                PopUpManager.centerPopUp(info);
+	                info.eventName.text = event.currentTarget.selectedItem.name;
+	                info.eventStatus.text = status;
+	                info.eventStartTime.text = event.currentTarget.selectedItem.startTime;
+	                info.eventCriteria.text = event.currentTarget.selectedItem.criteria;
+	                info.eventNotes.text = event.currentTarget.selectedItem.notes;
+	                if(status == "Active") {info.alertIcon.visible = true;}
+	            }
+	
+	            private function mailme():void
+	            {
+	            	var u:URLRequest = new URLRequest("mailto:lmatta@centennialpr.com; jcruz@centennialpr.com; pamorales@centennialpr.com");
+	            	navigateToURL(u,"_self");
+	            }
+	            
+	            public function useHttpService(parameters:Object, action:String):void {
+	                service = new HTTPService();
+	                CursorManager.setBusyCursor();
+	                if(action == "login") 
+	                {
+	                	service.url = "cgi-bin/sirLogin.cgi";
+	                	service.addEventListener("result", logInResult);
+	                }
+	                else if(action == "set") 
+	                {
+	                	service.url = "cgi-bin/setEvent.cgi";
+	                	service.addEventListener("result", setResult);
+	                }
+	                else if(action == "getChilds") 
+	                {
+	                	service.url = "cgi-bin/getChilds.cgi";
+	                	service.resultFormat = "e4x";
+	                	service.addEventListener("result", childsResult);
+	                }
+	                
+	                service.method = "POST";
+	                service.useProxy = false;
+	                service.addEventListener("fault", httpFault);
+	                service.send(parameters); 
+           		}
+	            
+	            public function logInResult(event:ResultEvent):void {
+	            	if(event.result == true) 
+	            	{
+	            		passwd.text = "";
+	            		menu.selectedIndex = 0;
+	            		currentState='Portal Home';
+	            	}
+	            	else {Alert.show("Check Username and password","Login Error");}
+	            	CursorManager.removeBusyCursor();
+	            }
+	            
+	            public function setResult(event:ResultEvent):void {
+	            	//Do something with the result.
+	            	Alert.show("" + event.result);
+	            	var e:TimerEvent = new TimerEvent(TimerEvent.TIMER);
+	            	reloadData(e);
+	            	CursorManager.removeBusyCursor();
+	            }
+	            
+	            public function manualRefresh():void {
+	            	var e:TimerEvent = new TimerEvent(TimerEvent.TIMER);
+	            	reloadData(e);
+	            }
+	            
+	            public function childsResult(event:ResultEvent):void {
+	            	var resultXML:XMLList = event.result.event;
+	            	childsXMLList.source = resultXML;
+	            	CursorManager.removeBusyCursor();
+	            }
+	
+	            public function httpFault(event:FaultEvent):void {
+	                var faultstring:String = event.fault.faultString;
+	                Alert.show(faultstring);
+	                CursorManager.removeBusyCursor();
+	            }
+	            
+	            private function alertListener(eventObj:CloseEvent):void 
+	            {
+	                // Check to see if the OK button was pressed.
+	                if (eventObj.detail==Alert.OK) {
+	                    currentState='Login'; 
+	                }
+            	}
+            	
+            	public function actionPrompt(parameters:Object, action:String):void 
+	            {
+	                Alert.show("Are you sure you wish to " + parameters.action + "?", "Event Action",Alert.OK | Alert.CANCEL, this, function (e:CloseEvent):void {actionListener(e, parameters, action)}, null, Alert.OK);
+            	}
+            	
+            	private function actionListener(eventObj:CloseEvent, parameters:Object, action:String):void 
+	            {
+	                if (eventObj.detail==Alert.OK) {
+	                    useHttpService(parameters,action) 
+	                }
+            	}
+	            
+	            private function clickHandler(event:ItemClickEvent):void 
+	            {
+		        	switch(event.index)
+		        	{
+		    			case 0:
+		        			currentState = 'Portal Home';
+		        			break;
+		    			case 1:
+		        			currentState = 'SIR Events';
+		        			break;
+		    			case 2:
+		        			currentState = 'Major Outages';
+		       				 break;
+		        		case 3:
+		        			currentState = 'Reports';
+		        			break;
+		    			default:
+		        			trace("Out of range");
+		        		break;
+	        		}
+	  			}
+	    ]]>
+	</mx:Script>
+	
+	<mx:XML id="childsXML" source="files/childsEvents.xml" />
+	
+
+    <mx:XMLListCollection id="cdmaXMLList" />
+    <mx:XMLListCollection id="envXMLList" />
+    <mx:XMLListCollection id="e911XMLList" />
+    <mx:XMLListCollection id="billXMLList" />
+    <mx:XMLListCollection id="transXMLList" />
+    <mx:XMLListCollection id="dataXMLList" />
+    <mx:XMLListCollection id="allXMLList" />
+    <mx:XMLListCollection id="childsXMLList" source="{childsXML.event}" />
+	  
+	<mx:DateFormatter id="df" formatString="EEEE, MMMM D YYYY, L:NN:SS A"/>
+	<mx:Label text="{date}" id="datetime" top="154" right="129" fontWeight="bold" color="#000000"/>
+	
+	<mx:states>
+		<mx:State name="Portal Home">
+			<mx:SetProperty target="{panel2}" name="title" value="Portal | Home"/>
+			<mx:SetStyle name="backgroundGradientColors" value="[#A0A0A0, #FFFFFF]"/>
+			<mx:SetStyle name="borderColor" value="#F3F3F3"/>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:TextArea right="10" top="10" bottom="51" left="10" textAlign="left" editable="false">
+					<mx:htmlText><![CDATA[ <font size='12'color='#0080FF'><b>SIR Level Outages in Centennial PR Network</font></b>
+
+<font size='12'color='#000000'><b>Outage Management Process</font></b>
+The AT&T MNRC Outage Management process was established to provide a consistent and efficient way of classifying network outages and managing outages according to those classifications.  These classifications are driven, primarily, by customer impact resulting from an outage, and are influenced by criteria set by the FCC.  MNRC classifications are referred to as <b>“SIR”</b> (Service Incident Report) outages that have a set minimum customer impact on the lower end of the scale (SIR 3) and meet FCC criteria for reporting purposes at the upper end (SIR 1E).  SIR level outages are determined by comparing customer impact against preset criteria. SIR level outages also carry the requirement for initial, periodic and final notifications to keep internal management and stakeholders apprised of the status until full resolution is achieved.  These notifications are managed by the MNRC Outage Management team. Not all outages meet SIR criteria; for example, the number of sites that must be out of service due to a single event to meet the lowest SIR level (SIR Level 3) is less than ten (10) sites, as shown in the attached partial SIR criteria list.
+
+<font size='12'color='#000000'><b>Centennial PR NOC Analysis of Network Outages Against SIR Criteria</font></b>
+For those portions of the Centennial PR network that the MNRC has no direct alarm visibility, and which are still under the monitoring responsibility of the Centennial PR NOC, Centennial PR NOC personnel will assess the customer impact of each outage against the SIR criteria and determine whether, or not, the impact meets any of the criteria. If the outage impact does not meet the criteria, Centennial PR NOC personnel will handle the outage using BAU processes.  If the outage is assessed as meeting SIR criteria, Centennial PR NOC personnel will initiate BAU processes called for by the type of outage (e.g., investigate alarming, open a trouble ticket, engage support and operations teams needed to resolve the issue, etc.) and add the following steps:
+•	Call the MNRC Outage Management team at 1-800-638-2822  Option # 8.
+•	Reference the trouble ticket number that was opened for the outage.
+•	Provide as much detail as possible regarding network elements involved in the outage, customer impact, teams engaged in resolution activities, and current status.
+•	Distribute the AT&T bridge number to key participants in restoration activities.
+•	Provide regular updates to the Outage Management team on the bridge until closure.
+•	Engage other Centennial support and operations teams, and vendors, as restoration progress would dictate.
+•	Provide any information needed by the MNRC Outage Management Lead to complete and file an FCC report for a SIR 1E level outage.
+•	Close out the trouble ticket opened for the outage upon resolution.
+
+<font size='12'color='#000000'><b>AT&T MNRC Outage Management Team Response to SIR Level Outages</font></b>
+Upon receiving a call from the Centennial PR NOC regarding a SIR level outage in the Centennial PR network, the MNRC Outage Management Lead will do the following:
+•	Confirm the SIR level assessment based on the information provided by the caller and accessing the trouble ticket opened by the Centennial PR NOC.
+•	Open an AT&T CTS trouble ticket for outage management tracking purposes.
+•	Open an outage conference bridge and provide the bridge number to the Centennial PR NOC. Engage any AT&T technicians and managers who may be needed on the bridge.
+•	Send out the initial, periodic and final SIR outage notifications to internal AT&T managers and stakeholders.
+•	Manage the open conference bridge until closure.
+•	Manage incident reporting requirements throughout the GNO organization.
+•	Take the responsibility for preparing and filing reports with the FCC for any outages related to the acquired assets and designated as “FCC reportable”, based on the information provided by the Centennial PR NOC, information contained in the corresponding trouble ticket and information received from conference bridge participants.
+•	Close out the CTS ticket opened for the incident.
+
+<font size='12'color='#0080FF'><b>Escalations</font></b>
+
+<font size='12'color='#000000'><b>AT&T MNRC Escalations</font></b>
+Please contact the AT&T MNRC Outage Management team for any questions related to SIR level outages.
+MNRC Outage Management: 1-800-638-2822  Option #8
+Email address: MNRCOutageMgmt@att.com
+
+<font size='12'color='#000000'><b>MNRC Escalation Path:</font></b>
+1st Level: Ron Soychak, MNRC Outage Mgr   206-972-5151
+2nd Level: Cory Hooyboer, MNRC Area Mgr   425-449-0540
+3rd Level: Chad Bray, Director MNRC (West)  425-214-2565]]></mx:htmlText>
+				</mx:TextArea>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="SIR Events">
+			<mx:SetProperty target="{panel2}" name="title" value="Portal | SIR Events"/>
+			<mx:SetProperty target="{linkbutton1}" name="label" value="by OSD Team"/>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Image id="refresh1" source="images/refreshButton.png" right="0" top="0" buttonMode="true" useHandCursor="true" click="manualRefresh()"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Label text="Refresh: " top="7" right="20"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:TabNavigator right="20" left="10" top="33" bottom="30">
+					<mx:Canvas label="All" width="100%" height="100%">
+                     	<components:EventsGrid id="allGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{allXMLList}" creationComplete="sortInit(allXMLList);"/>
+					</mx:Canvas>
+					<mx:Canvas label="CDMA RAN" width="100%" height="100%">
+						<components:EventsGrid id="cdmaRanGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{cdmaXMLList}" creationComplete="sortInit(cdmaXMLList);"/> 
+					</mx:Canvas>
+					<mx:Canvas label="Enviromental" width="100%" height="100%">
+						<components:EventsGrid id="envGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{envXMLList}" creationComplete="sortInit(envXMLList);"/>
+					</mx:Canvas>
+					<mx:Canvas label="E911" width="100%" height="100%">
+						<components:EventsGrid id="e911Grid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{e911XMLList}" creationComplete="sortInit(e911XMLList);"/>
+					</mx:Canvas>
+					<mx:Canvas label="Billing" width="100%" height="100%">
+						<components:EventsGrid id="billGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{billXMLList}" creationComplete="sortInit(billXMLList);"/>
+					</mx:Canvas>
+					<mx:Canvas label="Transport" width="100%" height="100%">
+						<components:EventsGrid id="transGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{transXMLList}" creationComplete="sortInit(transXMLList);"/>
+					</mx:Canvas>
+					<mx:Canvas label="Data Access" width="100%" height="100%">
+						<components:EventsGrid id="dataGrid" editable="false" enabled="true" left="0" top="0" bottom="0" right="0" doubleClickEnabled="true" itemDoubleClick="showWindow(event);" dataProvider="{dataXMLList}" creationComplete="sortInit(dataXMLList);"/>
+					</mx:Canvas>
+				</mx:TabNavigator>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Login">
+			<mx:RemoveChild target="{menu}"/>
+			<mx:RemoveChild target="{linkbutton1}"/>
+			<mx:SetProperty target="{panel2}" name="width" value="287"/>
+			<mx:SetProperty target="{panel2}" name="height" value="159"/>
+			<mx:SetStyle target="{panel2}" name="verticalCenter" value="0"/>
+			<mx:RemoveChild target="{datetime}"/>
+			<mx:SetProperty target="{panel2}" name="title" value="Login"/>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Button x="193" y="92" label="Login" click="useHttpService({username: username.text, passwd: passwd.text},'login')"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Panel resizeEffect="Resize" width="90%" height="136" layout="absolute" cornerRadius="12" borderColor="#3274A7" title="Welcome" top="10" horizontalCenter="0" id="panel0">
+					<mx:Image source="images/att_logo.gif" left="10" top="10"/>
+					<mx:Text text="SIR | Management Portal" fontSize="15" textAlign="right" enabled="true" right="10" top="10" height="24" id="text0" fontWeight="bold"/>   	    
+				</mx:Panel>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Label x="10" y="12" text="Username:"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Label x="10" y="53" text="Password:"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:TextInput x="89" y="10" id="username"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:TextInput x="89" y="51" id="passwd" displayAsPassword="true" enter="useHttpService({username: username.text, passwd: passwd.text},'login')"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Major Outages">
+			<mx:SetProperty target="{panel2}" name="title" value="Portal | Major Outages"/>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Label text="Under Construction" horizontalCenter="0" verticalCenter="-51" fontWeight="bold" fontSize="16"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Reports">
+		<mx:SetProperty target="{panel2}" name="title" value="Portal | Reports"/>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+				<mx:Label text="Under Construction" horizontalCenter="0" verticalCenter="-51" fontWeight="bold" fontSize="16"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{panel2}" position="lastChild">
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Panel resizeEffect="Resize" width="90%" height="136" layout="absolute" cornerRadius="12" borderColor="#3274A7" title="Welcome" top="10" horizontalCenter="0" id="panel1">
+		<mx:Image source="images/att_logo.gif" left="10" top="10"/>
+		<mx:Text text="SIR | Management Portal" fontSize="15" textAlign="right" enabled="true" right="10" top="10" height="24" id="text1" fontWeight="bold"/>   	    
+		<mx:TabBar id="menu" itemClick="clickHandler(event);" horizontalCenter="0" y="74">
+	    	<mx:dataProvider>
+	        	<mx:Array>
+	            	<mx:String>Portal Home</mx:String>
+	            	<mx:String>SIR Events</mx:String>
+	            	<mx:String>Major Outages</mx:String>
+	             	<mx:String>Reports</mx:String>
+	       		</mx:Array>
+	  		</mx:dataProvider>
+		</mx:TabBar>
+		<mx:Image source="images/Vista-logout.png" width="37" height="32" id="logout" buttonMode="true" useHandCursor="true" click='Alert.show("Are you sure you wish to logout?", "Logout",Alert.OK | Alert.CANCEL, this, alertListener, null, Alert.OK);' right="0" top="42"/>
+		<mx:Label text="Logout" top="48" right="37" id="label1"/>
+	</mx:Panel>
+	<mx:Panel resizeEffect="Resize" width="90%" height="70%" layout="absolute" cornerRadius="0" borderColor="#3274A7" title="Portal" horizontalCenter="0" verticalCenter="93" id="panel2" backgroundColor="#FFFFFF" backgroundAlpha="1.0">
+		<mx:LinkButton label="by OSD Team" click="mailme()" enabled="true" right="0" bottom="0" color="#A22222" id="linkbutton1"/>
+	</mx:Panel>
+</mx:Application>

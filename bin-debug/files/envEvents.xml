@@ -1,0 +1,158 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>23</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Battery Discharge]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>24</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Air Handler]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>25</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Engine Fail]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>26</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Facility on Generator > 60 min]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>27</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Fire Alarm]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>28</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[High Temp at facility]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>29</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Low Voltage]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>30</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Rectifier Fail > 50%]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>31</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Water Indicator]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>32</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Restarts / Reloads]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>33</id>
+		<section>ENVIRONMENTAL</section>
+		<name><![CDATA[Multiple restarts/reloads]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>

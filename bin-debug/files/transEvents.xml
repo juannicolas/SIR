@@ -1,0 +1,102 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>51</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[25-50% of the devices on a route OOS to/from multiple MSC’s]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>52</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[25-50% of trunks OOS to/from a single MSC with customer impact]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>53</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[Partial loss of access to local or long-distance wire line]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>54</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[>50% of the devices on a route OOS to/from multiple MSC’s]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>55</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[>50% of the devices on a route OOS]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>56</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA["Total/partial loss of system routes affecting 50+ Sites/900]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>57</id>
+		<section>TRANSPORT</section>
+		<name><![CDATA[Total loss of final trunk group access to local or long-distance wire line for a market that affects]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>

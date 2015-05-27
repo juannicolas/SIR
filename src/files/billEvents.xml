@@ -1,0 +1,32 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>16</id>
+		<section>BILLING</section>
+		<name><![CDATA[Billing w/o buffering]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>17</id>
+		<section>BILLING</section>
+		<name><![CDATA[Billing w/ buffering >2 hours]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>

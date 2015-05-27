@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" showCloseButton="true" 
+				status="Active" close="PopUpManager.removePopUp(this);" 
+				borderAlpha="0.75" 
+				layout="absolute" width="716" height="376" title="Event Properties" 
+				borderColor="#3274A7" cornerRadius="16">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.controls.Text;
+		]]>
+	</mx:Script>
+	
+	<mx:Text x="10" y="10" text="Event:"/>
+	<mx:Text x="10" y="33" text="Status:"/>
+	<mx:Text x="10" y="62" text="Start Time:"/>
+	<mx:Text x="10" y="88" text="SIR Criteria:"/>
+	<mx:DataGrid id="childGrid" width="676" height="200" horizontalCenter="0" bottom="10" 
+				 editable="false" enabled="true" allowMultipleSelection="true" 
+				 dataProvider="{parentDocument.childsXMLList}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="NE" dataField="ne"/>
+			<mx:DataGridColumn headerText="Start Time" dataField="startTime"/>
+			<mx:DataGridColumn headerText="Description" dataField="description"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:HRule x="10" y="114" width="676" height="4"/>
+	<mx:TextArea x="86" y="9" height="19" width="600" id="eventName" editable="false"/>
+	<mx:TextArea x="86" y="32" height="19" width="169" id="eventStatus" editable="false"/>
+	<mx:TextArea x="86" y="61" height="19" width="169" id="eventStartTime" editable="false"/>
+	<mx:TextArea x="86" y="87" height="19" width="169" id="eventCriteria" editable="false"/>
+	<mx:SWFLoader x="259" y="31" id ="alertIcon" source="files/exclamationIncon.swf" visible="true"/>
+	<mx:TextArea x="364" y="32" width="322" height="76" id="eventNotes" editable="false"/>
+	<mx:Label x="315" y="33" text="Notes:"/>
+	
+</mx:TitleWindow>

@@ -1,0 +1,242 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>34</id>
+		<section>E911</section>
+		<name><![CDATA[Complete loss of 911 capability in a Market > 30 minutes]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>35</id>
+		<section>E911</section>
+		<name><![CDATA[>30% of 911 Trunks in a route OOS]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>36</id>
+		<section>E911</section>
+		<name><![CDATA[10 to 29% of 911/E911 trunks in a route OOS]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>37</id>
+		<section>E911</section>
+		<name><![CDATA[PSAP routing issue]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>38</id>
+		<section>E911</section>
+		<name><![CDATA[Any 911 Phase 0 Outage not covered by any other SIR Level]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>39</id>
+		<section>E911</section>
+		<name><![CDATA[FCC Reportables VOICE]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>40</id>
+		<section>E911</section>
+		<name><![CDATA[FCC Reportables DATA]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>41</id>
+		<section>E911</section>
+		<name><![CDATA[30% or greater loss of E911 trunk capacity/congestion]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>42</id>
+		<section>E911</section>
+		<name><![CDATA[10 to 29% loss of E911 trunk capacity/congestion]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>43</id>
+		<section>E911</section>
+		<name><![CDATA[E911 Phase 1 or 2 affecting 15-49 cell sites]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>44</id>
+		<section>E911</section>
+		<name><![CDATA[E911 Phase 2 affecting 15-49 LMUs]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>45</id>
+		<section>E911</section>
+		<name><![CDATA[E911 Phase 1 or 2 affecting 10-14 cell sites]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>46</id>
+		<section>E911</section>
+		<name><![CDATA[E911 Phase 2 affecting 10-14 LMUs]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>47</id>
+		<section>E911</section>
+		<name><![CDATA["Loss of monitoring]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>48</id>
+		<section>E911</section>
+		<name><![CDATA[E911 GMLC service provider element Out-of-Service (OOS) ]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>49</id>
+		<section>E911</section>
+		<name><![CDATA["Loss of monitoring]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>50</id>
+		<section>E911</section>
+		<name><![CDATA[Any 911 service disruption or issue not covered by any other existing criteria and beyond single user impact (SUI)]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>

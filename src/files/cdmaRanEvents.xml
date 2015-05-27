@@ -1,0 +1,284 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>1</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[50+ sites OOS > 30 minutes]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>2</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[15+ sites OOS > 15 minutes]]></name>
+		<criteria>1</criteria>
+		<status>Active</status>
+		<notes>Manually activated</notes>
+		<meter>100</meter>
+		<metercolor>0xFA5858</metercolor>
+		<action>Clear Event</action>
+		<color>0xFA5858</color>
+		<outageId>1</outageId>
+		<startTime>2009-11-05 16:02:52</startTime>
+	</event>
+	<event>
+		<id>3</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[10-14 sites OOS > 15 minutes]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>4</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Total city loss involving < 10 sites]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>5</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Total city loss involving > 10 sites]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>6</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Congestion > 50% on >10 sites]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>7</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[One Way Audio conditions affecting 15+ sites > 15 minutees]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>8</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MO or MT call failures at 50% on 100+ sites > 30 minutes]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>9</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MO or MT call failures at 50% on 100+ sites > 15 minutes]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>10</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MO or MT call failures at 25% on 100+ sites > 15 minutes]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>11</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MO or MT call failures at 10% on 100+ sites > 15 minutes]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>12</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MO or MT call failures  < or > stated on SIR Criteria > 15 minutes]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>13</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[MSC - Simplex-Single-Sided Issues: Loss of redundancy on a node where total failure would cause complete loss of processing on the node impacted.  ]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>14</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[BSC - Simplex-Single-Sided Issues: Loss of redundancy on a node where total failure would cause complete loss of processing on the node impacted.  ]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>15</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Utilization: Reaching Capacity Warning Threshold]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>18</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[100% Call Failures impacting MSC/ RNC's ]]></name>
+		<criteria>1E</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>19</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Call Failures as reported by Access7 TM or SOIPS (see National Voice tab) ]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>20</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[GNOC reports any blocked/overflow calls >15 min]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>21</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Handoff failures in multiple markets]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>22</id>
+		<section>CDMA RAN</section>
+		<name><![CDATA[Handoff failures in single market]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>

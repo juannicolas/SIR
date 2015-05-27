@@ -1,0 +1,144 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+	<event>
+		<id>58</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[PDSN  SS7 single sided to an STP > 15 minutes]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>59</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA["PDSN - 2G/1xRTT]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>60</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[Loss of wireless data >15 minutes affecting multiple BSC/RNCs]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>61</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[Degradation of wireless data > 15 minutes affecting multiple BSC/RNCs]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>62</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[Multiple PDSNs SS7 isolated to both STPs > 15 minutes]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>63</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[PDSN  total loss of redundancy]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>64</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[Loss of wireless data to 25 sites > for longer than 15 minutes at a single BSC/ RNC]]></name>
+		<criteria>1</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>65</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[Degradation of wireless data > 15 minutes at a single BSC]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>66</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[PDSN nodes that incur high utilization indicators > 60 minutes]]></name>
+		<criteria>2</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+	<event>
+		<id>67</id>
+		<section>DATA ACCESS</section>
+		<name><![CDATA[PDSN hung or module not affecting nodal redundancy]]></name>
+		<criteria>3</criteria>
+		<status>Clear</status>
+		<notes></notes>
+		<meter></meter>
+		<metercolor>0x0174DF</metercolor>
+		<action>Activate Event</action>
+		<color></color>
+		<outageId></outageId>
+		<startTime></startTime>
+	</event>
+</Events>
